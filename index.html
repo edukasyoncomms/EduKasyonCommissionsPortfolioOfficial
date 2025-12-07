@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduKasyon Commissions | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'edu-bg': '#FFF0E5',
+                        'edu-coffee': '#4A332A',
+                        'edu-peach': '#FFC4A3',
+                        'edu-paper': '#FFFDF5',
+                    },
+                    fontFamily: {
+                        'bubble': ['Fredoka One', 'cursive'],
+                        'hand': ['Patrick Hand', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&display=swap');
+        body {
+            font-family: 'Patrick Hand', cursive;
+            background-color: #FFF0E5;
+            color: #4A332A;
+            background-image: radial-gradient(#F4A261 0.5px, transparent 0.5px), radial-gradient(#F4A261 0.5px, #FFF0E5 0.5px);
+            background-size: 20px 20px;
+        }
+        h1, h2, h3, .btn-font { font-family: 'Fredoka One', cursive; letter-spacing: 0.5px; }
+        
+        .paper-card {
+            background-color: #FFFDF5;
+            border-radius: 10px;
+            box-shadow: 5px 5px 0px rgba(74, 51, 42, 0.1);
+            border: 2px solid #FFFDF5;
+            transition: transform 0.2s;
+        }
+        .paper-card:hover { transform: translateY(-5px); box-shadow: 8px 8px 0px rgba(74, 51, 42, 0.2); }
+        
+        .washi-tape {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+            width: 120px; height: 30px; opacity: 0.9; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 10; display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; font-weight: bold; color: rgba(0,0,0,0.5);
+        }
+        
+        .btn-bubbly {
+            background-color: #4A332A; color: white; border-radius: 20px; box-shadow: 0 4px 0 #2e1d16; transition: all 0.1s;
+        }
+        .btn-bubbly:active { box-shadow: 0 0 0 #2e1d16; transform: translateY(4px); }
+        
+        .modal { transition: opacity 0.3s ease, visibility 0.3s ease; opacity: 0; visibility: hidden; }
+        .modal.active { opacity: 1; visibility: visible; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-40 bg-[#FFF0E5]/95 backdrop-blur-sm border-b-2 border-orange-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-edu-coffee cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-10 h-10 bg-edu-coffee rounded-full flex items-center justify-center text-white text-lg">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <span class="font-bubble text-2xl tracking-wide">EduKasyon</span>
+            </div>
+            <div class="hidden md:flex gap-4 lg:gap-6 text-xl text-edu-coffee items-center">
+                <a href="#tech" class="hover:text-orange-500 transition">Tech</a>
+                <a href="#uiux" class="hover:text-purple-500 transition">UI/UX</a>
+                <a href="#graphics" class="hover:text-purple-500 transition">Graphics</a>
+                <a href="#acads" class="hover:text-green-500 transition">Acads</a>
+                <a href="#art" class="hover:text-pink-500 transition">Art</a>
+                <a href="#rates" class="hover:text-blue-500 transition font-bold text-orange-600">Rates</a>
+                <a href="#contact" class="btn-bubbly px-6 py-1 text-lg btn-font">Hire Me!</a>
+            </div>
+            <button class="md:hidden text-2xl text-edu-coffee" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-orange-100 p-4 absolute w-full shadow-lg">
+            <a href="#tech" class="block py-2 text-xl hover:text-orange-500">Tech</a>
+            <a href="#uiux" class="hover:text-purple-500 transition">UI/UX</a>
+            <a href="#graphics" class="block py-2 text-xl hover:text-purple-500">Graphics</a>
+            <a href="#acads" class="block py-2 text-xl hover:text-green-500">Acads</a>
+            <a href="#art" class="block py-2 text-xl hover:text-pink-500">Art</a>
+            <a href="#rates" class="block py-2 text-xl hover:text-blue-500 font-bold">Rates</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto relative">
+            <div class="bg-white/80 p-8 rounded-[30px] inline-block border-4 border-dashed border-edu-coffee/20 paper-card">
+                <h1 class="text-5xl md:text-7xl text-edu-coffee mb-2 drop-shadow-sm">
+                    EduKasyon <br><span class="text-orange-400">Commissions</span>
+                </h1>
+                <p class="text-2xl md:text-3xl text-edu-coffee/80 mt-4 font-bold">"Sagot ko na ang grades mo!"</p>
+                <div class="mt-8 flex flex-wrap justify-center gap-4 text-lg">
+                    <span class="bg-pink-100 text-pink-800 px-4 py-1 rounded-full border border-pink-200"><i class="fa-solid fa-pen-nib mr-1"></i> Academic</span>
+                    <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full border border-blue-200"><i class="fa-solid fa-code mr-1"></i> Technical</span>
+                </div>
+                <div class="mt-10"><a href="#contact" class="btn-bubbly px-8 py-3 text-xl inline-block btn-font">Inquire Now</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. TECH WING -->
+    <section id="tech" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl text-center text-edu-coffee mb-12"><i class="fa-solid fa-laptop-code text-blue-400"></i> The Tech Wing</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- FEATURED: Library System -->
+                <div class="paper-card p-6 pt-10 relative col-span-1 md:col-span-3 bg-gradient-to-br from-white to-blue-50">
+                    <div class="washi-tape" style="background-color: #FFD700; width: 200px; top: -15px;">Featured Case Study</div>
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="text-center md:text-left flex-1">
+                            <h3 class="text-3xl text-edu-coffee mb-2 font-bold">Library Management System</h3>
+                            <p class="text-lg text-gray-600 mb-4">A full-stack documentation and design project for MPSU. Includes ERD, DFD, and UI Prototypes.</p>
+                            <div class="flex gap-2 justify-center md:justify-start mb-4">
+                                <span class="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded">System Analysis</span>
+                                <span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded">UI Design</span>
+                            </div>
+                            <button onclick="document.getElementById('sia-modal').classList.add('active')" class="btn-bubbly px-6 py-2 text-lg w-full md:w-auto">
+                                <i class="fa-solid fa-book-open mr-2"></i> View Diagrams
+                            </button>
+                        </div>
+                        <div class="w-full md:w-1/3">
+                            <img src="images/sia_dashboard.png" class="rounded-lg shadow-md border-4 border-white transform rotate-2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Java Card -->
+                <div class="paper-card p-6 pt-10 relative">
+                    <div class="washi-tape" style="background-color: #FFC4A3;"></div>
+                    <div class="text-center">
+                        <i class="fa-brands fa-java text-5xl text-orange-500 mb-4"></i>
+                        <h3 class="text-2xl text-edu-coffee mb-2">Java Apps</h3>
+                        <p class="text-lg text-gray-600 mb-6">Calculators & Logic.</p>
+                        <button onclick="openCodeModal('Java Grading System', javaCodeSample)" class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-bold w-full hover:bg-blue-200">View Snippet</button>
+                    </div>
+                </div>
+                <!-- Web Design -->
+                <div class="paper-card p-6 pt-10 relative">
+                    <div class="washi-tape" style="background-color: #A0C4FF;"></div>
+                    <div class="text-center">
+                        <i class="fa-brands fa-html5 text-5xl text-orange-600 mb-4"></i>
+                        <h3 class="text-2xl text-edu-coffee mb-2">Web Design</h3>
+                        <p class="text-lg text-gray-600 mb-6">Responsive Portfolios.</p>
+                        <button onclick="openCodeModal('HTML Structure', htmlCodeSample)" class="bg-orange-100 text-orange-800 px-4 py-2 rounded-lg font-bold w-full hover:bg-orange-200">View Code</button>
+                    </div>
+                </div>
+                <!-- Python -->
+                <div class="paper-card p-6 pt-10 relative">
+                    <div class="washi-tape" style="background-color: #BDB2FF;"></div>
+                    <div class="text-center">
+                        <i class="fa-brands fa-python text-5xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-2xl text-edu-coffee mb-2">Python Scripts</h3>
+                        <p class="text-lg text-gray-600 mb-6">Data Sorting Tools.</p>
+                        <button onclick="openCodeModal('File Sorter', pythonCodeSample)" class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-lg font-bold w-full hover:bg-yellow-200">View Logic</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1.5 UI/UX & PROTOTYPES (Fixed for Image Showcase) -->
+    <section id="uiux" class="py-16 bg-edu-paper relative overflow-hidden">
+        <div class="absolute top-10 right-10 text-6xl opacity-5 rotate-12 text-edu-coffee"><i class="fa-solid fa-pen-ruler"></i></div>
+        <div class="absolute bottom-10 left-10 text-6xl opacity-5 -rotate-12 text-edu-coffee"><i class="fa-solid fa-layer-group"></i></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <h2 class="text-4xl text-center text-edu-coffee mb-12 font-bubble">
+                <i class="fa-solid fa-mobile-screen-button text-purple-400"></i> UI/UX Design
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                
+                <!-- CARD 1: WIREFRAME -->
+                <div class="relative group cursor-pointer" onclick="openImageModal('images/my_wireframe_screenshot.png', 'Initial Concept Sketches')">
+                    <div class="washi-tape" style="background-color: #e5e7eb; width: 140px; top: -15px; color: #555;">Concept Drafts</div>
+                    
+                    <div class="bg-white p-3 pb-12 shadow-xl transform -rotate-2 transition hover:rotate-0 hover:scale-105 border border-gray-200">
+                        <div class="flex justify-between items-center mb-2 opacity-50 px-2">
+                            <i class="fa-solid fa-camera text-xl"></i>
+                            <span class="font-bold text-[10px] uppercase tracking-widest">Work in Progress</span>
+                        </div>
+                        <img src="images/my_wireframe_screenshot.png" alt="Wireframe Snapshot" class="w-full aspect-[4/3] object-cover border border-gray-100 filter grayscale contrast-125">
+                        <div class="absolute bottom-4 left-0 right-0 text-center">
+                            <h3 class="text-xl text-edu-coffee font-hand font-bold">Rough Sketches</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: HI-FI SCREENS -->
+                <div class="relative group cursor-pointer" onclick="openImageModal('images/my_app_showcase.png', 'High-Fidelity App Designs')">
+                    <div class="washi-tape" style="background-color: #FFC4A3; width: 140px; top: -15px; color: #555;">Hi-Fi Screens</div>
+                    <div class="bg-white p-3 rounded-[2.5rem] border-8 border-gray-800 shadow-2xl transform rotate-1 transition hover:rotate-0 hover:scale-105 relative max-w-xs mx-auto">
+                        <!-- Phone Notch -->
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-gray-800 rounded-b-xl z-20"></div>
+                        <!-- Screen Container -->
+                        <div class="relative overflow-hidden rounded-[2rem] aspect-[9/19] bg-gray-100 group">
+                            <img src="images/my_app_screen.png" alt="App Prototype" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 backdrop-blur-sm">
+                                <span class="text-white text-4xl mb-4"><i class="fa-solid fa-images"></i></span>
+                                <span class="bg-purple-500 text-white px-6 py-2 rounded-full font-bold shadow-lg border-2 border-white">
+                                    View Designs
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <h3 class="text-2xl text-edu-coffee font-hand font-bold">App Interface</h3>
+                        <p class="text-gray-600">High-fidelity UI designs & mockups.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. GRAPHICS & PUBMATS (Flexible Corkboard) -->
+    <section id="graphics" class="py-16 bg-edu-coffee relative">
+        <!-- Cork Texture Background -->
+        <div class="absolute inset-0 opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/cork-board.png');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <h2 class="text-4xl text-center text-white mb-12 font-bubble">
+                <i class="fa-solid fa-layer-group text-yellow-400"></i> Graphics & Layouts
+            </h2>
+            
+            <div class="flex flex-wrap justify-center gap-8 p-8 border-8 border-yellow-700 rounded-xl bg-[#5C4033] shadow-2xl">
+                
+                <!-- 1. Motion Graphics / GIF -->
+                <div class="relative group cursor-pointer w-64 transform hover:scale-105 transition duration-300" onclick="openImageModal('images/my_animation.gif', 'Motion Graphics')">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-purple-500 shadow-md z-20 border border-purple-700"></div>
+                    <div class="bg-white p-2 shadow-lg rotate-[-2deg] group-hover:rotate-0 transition">
+                        <img src="images/my_animation.gif" class="w-full h-64 object-cover border border-gray-200" alt="GIF">
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                             <div class="bg-black/40 rounded-full w-10 h-10 flex items-center justify-center backdrop-blur-sm border-2 border-white">
+                                <i class="fa-solid fa-play text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="p-2 text-center"><h4 class="font-bold text-edu-coffee">Motion / GIFs</h4></div>
+                    </div>
+                </div>
+
+                <!-- 2. The Brochure -->
+                <div class="relative group cursor-pointer w-64 transform hover:scale-105 transition duration-300" onclick="openImageModal('images/brochure.png', 'Tri-Fold Brochure Design')">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 shadow-md z-20 border border-blue-700"></div>
+                    <div class="bg-white p-2 shadow-lg rotate-[1deg] group-hover:rotate-0 transition">
+                        <img src="images/brochure.png" class="w-full h-64 object-cover border border-gray-200" alt="Brochure">
+                        <div class="p-2 text-center">
+                            <h4 class="font-bold text-edu-coffee">Informative Brochure</h4>
+                            <p class="text-xs text-gray-500">Layout & Print</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. IP Poster -->
+                <div class="relative group cursor-pointer w-64 transform hover:scale-105 transition duration-300" onclick="openImageModal('images/indigenous_poster.png', 'Indigenous People Poster')">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 shadow-md z-20 border border-red-700"></div>
+                    <div class="bg-white p-2 shadow-lg rotate-[-1deg] group-hover:rotate-0 transition">
+                        <img src="images/indigenous_poster.png" class="w-full h-64 object-cover border border-gray-200">
+                        <div class="p-2 text-center"><h4 class="font-bold text-edu-coffee">IP Poster</h4></div>
+                    </div>
+                </div>
+
+                <!-- 4. Simple Infographics -->
+                <div class="relative group cursor-pointer w-64 transform hover:scale-105 transition duration-300" onclick="openImageModal('images/InternetFraud.png', 'Internet Fraud Infographics')">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-green-500 shadow-md z-20 border border-green-700"></div>
+                    <div class="bg-white p-2 shadow-lg rotate-[2deg] group-hover:rotate-0 transition">
+                        <img src="images/InternetFraud.png" class="w-full h-64 object-cover border border-gray-200">
+                        <div class="p-2 text-center"><h4 class="font-bold text-edu-coffee">Simple Infographics</h4></div>
+                    </div>
+                </div>
+
+                <!-- 5. Newspaper Feature Layout -->
+                <div class="relative group cursor-pointer w-64 transform hover:scale-105 transition duration-300" onclick="openImageModal('images/newspaper_layout.png', 'Newspaper Feature (Layout and Graphics Only)')">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-yellow-500 shadow-md z-20 border border-yellow-700"></div>
+                    <div class="bg-white p-2 shadow-lg rotate-[-1deg] group-hover:rotate-0 transition">
+                        <img src="images/newspaper_layout.png" class="w-full h-64 object-cover border border-gray-200">
+                        <div class="p-2 text-center"><h4 class="font-bold text-edu-coffee">Newspaper - Feature (Layout & Graphics)</h4></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ACADEMIC ARCHIVES -->
+    <section id="acads" class="py-20 bg-[#FFF0E5]">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl text-center text-edu-coffee mb-12 font-bubble"><i class="fa-solid fa-folder-open text-yellow-500"></i> Sample Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Research Card -->
+                <div class="paper-card p-0 group relative overflow-hidden">
+                    <div class="bg-green-100 h-8 w-1/3 rounded-t-lg ml-4 border-t-2 border-l-2 border-r-2 border-green-200 absolute -top-8"></div>
+                    <div class="bg-green-50 p-6 border-2 border-green-100 rounded-lg mt-2">
+                        <div class="flex justify-between items-start mb-4">
+                            <div><h3 class="text-xl font-bold text-edu-coffee">Technical Research</h3><span class="text-xs font-bold bg-green-200 text-green-800 px-2 py-1 rounded-full">IEEE Style</span></div>
+                            <i class="fa-solid fa-file-lines text-3xl text-green-200"></i>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">"Multimedia Compression" Manuscript.</p>
+                        <button onclick="document.getElementById('research-modal').classList.add('active')" class="w-full py-2 bg-green-600 text-white rounded font-bold hover:bg-green-700 transition">View Full Paper</button>
+                    </div>
+                </div>
+                <!-- Journalism -->
+                <div class="paper-card p-0 group relative overflow-hidden">
+                    <div class="bg-pink-100 h-8 w-1/3 rounded-t-lg ml-4 border-t-2 border-l-2 border-r-2 border-pink-200 absolute -top-8"></div>
+                    <div class="bg-pink-50 p-6 border-2 border-pink-100 rounded-lg mt-2">
+                        <div class="flex justify-between items-start mb-4">
+                            <div><h3 class="text-xl font-bold text-edu-coffee">Speech</h3><span class="text-xs font-bold bg-pink-200 text-pink-800 px-2 py-1 rounded-full">Journalism</span></div>
+                            <i class="fa-solid fa-newspaper text-3xl text-pink-200"></i>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Final Examination for Purposive Communication</p>
+                        <button onclick="openImageModal('images/Speech.png', 'Feature Article: IT Careers')" class="w-full py-2 bg-pink-500 text-white rounded font-bold hover:bg-pink-600 transition">Read Article</button>
+                    </div>
+                </div>
+                <!-- Reflection -->
+                <div class="paper-card p-0 group relative overflow-hidden">
+                    <div class="bg-yellow-100 h-8 w-1/3 rounded-t-lg ml-4 border-t-2 border-l-2 border-r-2 border-yellow-200 absolute -top-8"></div>
+                    <div class="bg-yellow-50 p-6 border-2 border-yellow-100 rounded-lg mt-2">
+                        <div class="flex justify-between items-start mb-4">
+                            <div><h3 class="text-xl font-bold text-edu-coffee">Reflection Papers</h3><span class="text-xs font-bold bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full">Essays</span></div>
+                            <i class="fa-solid fa-pen-fancy text-3xl text-yellow-200"></i>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Module Answers.</p>
+                        <button onclick="openImageModal('images/module.png', 'Module Reflection')" class="w-full py-2 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-600 transition">Read Excerpt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ART GALLERY -->
+    <section id="art" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl text-center text-edu-coffee mb-12"><i class="fa-solid fa-palette text-pink-400"></i> Art Gallery</h2>
+            
+            <!-- SECTION A: GRAPHICS COMMISSIONS -->
+            <h3 class="text-2xl text-edu-coffee font-bubble mb-6 border-l-4 border-pink-400 pl-3">Graphics Commissions</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="relative group hover:-translate-y-2 transition duration-300 cursor-pointer" onclick="openImageModal('images/electionlols.png', 'Student Election Graphics')">
+                    <div class="bg-white p-3 pb-8 shadow-lg rounded-lg border border-gray-100">
+                        <img src="images/electionlols.png" class="w-full h-80 object-cover rounded">
+                        <p class="text-center font-hand text-xl mt-2 text-gray-600">Sample 1</p>
+                    </div>
+                </div>
+                <div class="relative group hover:-translate-y-2 transition duration-300 cursor-pointer" onclick="openImageModal('images/gradweyt3.png', 'Graduation Graphics')">
+                    <div class="bg-white p-3 pb-8 shadow-lg rounded-lg border border-gray-100">
+                        <img src="images/gradweyt3.png" class="w-full h-80 object-cover rounded">
+                        <p class="text-center font-hand text-xl mt-2 text-gray-600">Sample 2</p>
+                    </div>
+                </div>
+                <div class="relative group hover:-translate-y-2 transition duration-300 cursor-pointer" onclick="openImageModal('images/washingmachine.png', 'Intern Graphics')">
+                    <div class="bg-white p-3 pb-8 shadow-lg rounded-lg border border-gray-100">
+                        <img src="images/washingmachine.png" class="w-full h-80 object-cover rounded">
+                        <p class="text-center font-hand text-xl mt-2 text-gray-600">Sample 3</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION B: PET PORTRAITS / CHIBI -->
+            <h3 class="text-2xl text-edu-coffee font-bubble mb-6 border-l-4 border-orange-400 pl-3">Pet Portraits & Icons</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- The Kitten Art -->
+                <div class="relative group rotate-2 hover:rotate-0 transition duration-300 cursor-pointer col-span-1 md:col-span-1" 
+                      onclick="openImageModal('images/cat.png', 'Curious Kitten - Full Render')">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-8 bg-pink-200 opacity-90 z-10 shadow-sm" style="transform: rotate(-3deg);"></div>
+                    <div class="bg-white p-3 pb-8 shadow-lg">
+                        <img src="images/cat.png" class="w-full h-64 object-cover border border-gray-100">
+                        <p class="text-center font-hand text-xl mt-2 text-gray-600">Pet Portrait</p>
+                    </div>
+                </div>
+                <!-- The Mouse Art -->
+                <div class="relative group rotate-2 hover:rotate-0 transition duration-300 cursor-pointer col-span-1 md:col-span-1" 
+                      onclick="openImageModal('images/mouse.png', 'Sad Mouse - Full Render')">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-8 bg-pink-200 opacity-90 z-10 shadow-sm" style="transform: rotate(-3deg);"></div>
+                    <div class="bg-white p-3 pb-8 shadow-lg">
+                        <img src="images/mouse.png" class="w-full h-64 object-cover border border-gray-100">
+                        <p class="text-center font-hand text-xl mt-2 text-gray-600">Pet Portrait</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOOLS OF THE TRADE -->
+    <section id="tools" class="py-16 bg-white border-t-4 border-dashed border-orange-200 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#4A332A 1px, transparent 1px); background-size: 20px 20px;"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <h2 class="text-4xl text-center text-edu-coffee mb-10 font-bubble">
+                <i class="fa-solid fa-toolbox text-gray-400"></i> My Creative Arsenal
+            </h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                <!-- 1. VS Code -->
+                <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-blue-500 rounded-2xl shadow-[0_5px_0_rgb(37,99,235)] border-4 border-blue-600 flex items-center justify-center text-white text-4xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">VS Code</span>
+                </div>
+                <!-- 2. Adobe Suite -->
+                <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-red-600 rounded-2xl shadow-[0_5px_0_rgb(185,28,28)] border-4 border-red-700 flex items-center justify-center text-white text-4xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-brands fa-adobe"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">Adobe Suite</span>
+                </div>
+                <!-- 3. FlipaClip -->
+                <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-orange-500 rounded-2xl shadow-[0_5px_0_rgb(194,65,12)] border-4 border-orange-600 flex items-center justify-center text-white text-3xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-solid fa-clapperboard"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">FlipaClip</span>
+                </div>
+                <!-- 4. Figma / UI -->
+                <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-purple-500 rounded-2xl shadow-[0_5px_0_rgb(126,34,206)] border-4 border-purple-600 flex items-center justify-center text-white text-3xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-brands fa-figma"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">Figma/XD</span>
+                </div>
+                 <!-- 5. HTML/CSS -->
+                 <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-gray-700 rounded-2xl shadow-[0_5px_0_rgb(55,65,81)] border-4 border-gray-800 flex items-center justify-center text-white text-3xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">HTML & CSS</span>
+                </div>
+                <!-- 6. IbisPaint -->
+                 <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-pink-400 rounded-2xl shadow-[0_5px_0_rgb(236,72,153)] border-4 border-pink-500 flex items-center justify-center text-white text-3xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-solid fa-paintbrush"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">IbisPaint</span>
+                </div>
+                <!-- 7. GitHub -->
+                 <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-gray-800 rounded-2xl shadow-[0_5px_0_rgb(17,24,39)] border-4 border-gray-900 flex items-center justify-center text-white text-4xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">GitHub</span>
+                </div>
+                <!-- 8. Notepad -->
+                 <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-blue-300 rounded-2xl shadow-[0_5px_0_rgb(147,197,253)] border-4 border-blue-400 flex items-center justify-center text-white text-4xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">Notepad</span>
+                </div>
+                <!-- 9. Laragon -->
+                 <div class="flex flex-col items-center group cursor-default">
+                    <div class="w-20 h-20 bg-cyan-500 rounded-2xl shadow-[0_5px_0_rgb(6,182,212)] border-4 border-cyan-600 flex items-center justify-center text-white text-3xl transform transition group-hover:scale-110 group-hover:-translate-y-2">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <span class="mt-3 font-bold text-edu-coffee font-hand text-lg">Laragon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. RATES / PRICE LIST -->
+    <section id="rates" class="py-16 bg-edu-coffee relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl text-center text-white mb-12 font-bubble">
+                <i class="fa-solid fa-tags text-yellow-400"></i> Service Menu (Rates)
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- ACADS LIST (Notebook Style) -->
+                <div class="bg-white p-6 rounded-sm shadow-xl relative transform -rotate-1">
+                    <!-- Holes for notebook -->
+                    <div class="absolute top-0 left-0 bottom-0 w-8 border-r-2 border-red-200 flex flex-col justify-evenly items-center py-4 bg-gray-50">
+                        <div class="w-3 h-3 bg-gray-800 rounded-full opacity-20"></div>
+                        <div class="w-3 h-3 bg-gray-800 rounded-full opacity-20"></div>
+                        <div class="w-3 h-3 bg-gray-800 rounded-full opacity-20"></div>
+                    </div>
+                    
+                    <div class="ml-6">
+                        <h3 class="text-2xl text-edu-coffee font-bold border-b-2 border-gray-300 pb-2 mb-4 font-hand">Academic Services</h3>
+                        <ul class="space-y-3 font-hand text-lg text-gray-700">
+                            <li class="flex justify-between border-b border-blue-100 pb-1">
+                                <div>
+                                    <span class="block">Essay / Reflection</span>
+                                    <span class="text-xs text-gray-400 italic">2-3 Days</span>
+                                </div>
+                                <span class="font-bold text-green-600">₱200+</span>
+                            </li>
+                            <li class="flex justify-between border-b border-blue-100 pb-1">
+                                <div>
+                                    <span class="block">PPT Presentation</span>
+                                    <span class="text-xs text-gray-400 italic">3 Days</span>
+                                </div>
+                                <span class="font-bold text-green-600">₱300+</span>
+                            </li>
+                            <li class="flex justify-between border-b border-blue-100 pb-1">
+                                <div>
+                                    <span class="block">Module Answers</span>
+                                    <span class="text-xs text-gray-400 italic">2 Days</span>
+                                </div>
+                                <span class="font-bold text-green-600">₱150+</span>
+                            </li>
+                            <li class="flex justify-between border-b border-blue-100 pb-1">
+                                <div>
+                                    <span class="block">Research Abstract</span>
+                                    <span class="text-xs text-gray-400 italic">5 Days</span>
+                                </div>
+                                <span class="font-bold text-green-600">₱350+</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 text-center text-xs text-gray-500 italic">*Prices depend on length & deadline</div>
+                    </div>
+                </div>
+
+                <!-- TECH LIST (Blueprint/Dark Style) -->
+                <div class="bg-[#2d3748] p-6 rounded-lg shadow-xl relative transform rotate-1 text-blue-100 border-4 border-blue-400">
+                    <div class="absolute -top-3 -right-3 w-8 h-8 bg-gray-200 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                        <i class="fa-solid fa-code text-gray-800 text-sm"></i>
+                    </div>
+                    
+                    <h3 class="text-2xl text-white font-bold border-b-2 border-blue-500 pb-2 mb-4 font-mono">Tech / Dev Services</h3>
+                    <ul class="space-y-4 font-mono text-sm">
+                        <li class="flex justify-between items-center bg-gray-700 p-2 rounded">
+                            <div>
+                                <span class="block">Simple Console App</span>
+                                <span class="text-xs text-gray-400 italic">1 Week</span>
+                            </div>
+                            <span class="font-bold text-green-400">₱500+</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-gray-700 p-2 rounded">
+                            <div>
+                                <span class="block">Static Portfolio Site</span>
+                                <span class="text-xs text-gray-400 italic">1-2 Weeks</span>
+                            </div>
+                            <span class="font-bold text-green-400">₱1,500+</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-gray-700 p-2 rounded">
+                            <div>
+                                <span class="block">System Flowchart</span>
+                                <span class="text-xs text-gray-400 italic">2 Days</span>
+                            </div>
+                            <span class="font-bold text-green-400">₱150/ea</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-gray-700 p-2 rounded">
+                            <div>
+                                <span class="block">ERD / Database Design</span>
+                                <span class="text-xs text-gray-400 italic">3 Days</span>
+                            </div>
+                            <span class="font-bold text-green-400">₱250/ea</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 text-center text-xs text-gray-400">*Includes basic source code & comments</div>
+                </div>
+
+                <!-- ART LIST (Clipboard Style) -->
+                <div class="bg-yellow-50 p-6 pt-12 rounded-lg shadow-xl relative transform -rotate-1 border border-yellow-200">
+                    <!-- Clip -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-24 h-10 bg-gray-700 rounded-md shadow-md z-10 border-b-4 border-gray-900"></div>
+                    
+                    <h3 class="text-2xl text-edu-coffee font-bold border-b-2 border-orange-200 pb-2 mb-4 font-hand">Art & Design</h3>
+                    <ul class="space-y-3 font-hand text-lg text-gray-700">
+                        <li class="flex justify-between items-center">
+                            <div>
+                                <span class="bg-pink-100 px-2 rounded block w-max">Pubmat / Poster</span>
+                                <span class="text-xs text-gray-400 italic ml-1">2 Days</span>
+                            </div>
+                            <span class="font-bold text-green-600">₱200</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <div>
+                                <span class="bg-purple-100 px-2 rounded block w-max">Brochure Layout</span>
+                                <span class="text-xs text-gray-400 italic ml-1">3 Days</span>
+                            </div>
+                            <span class="font-bold text-green-600">₱350</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <div>
+                                <span class="bg-orange-100 px-2 rounded block w-max">Pet Portrait (Head)</span>
+                                <span class="text-xs text-gray-400 italic ml-1">4 Days</span>
+                            </div>
+                            <span class="font-bold text-green-600">₱300</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <div>
+                                <span class="bg-blue-100 px-2 rounded block w-max">Logo / Icon</span>
+                                <span class="text-xs text-gray-400 italic ml-1">3-5 Days</span>
+                            </div>
+                            <span class="font-bold text-green-600">₱250</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#contact" class="inline-block bg-edu-coffee text-white text-sm px-4 py-1 rounded-full">Request Quote</a>
+                    </div>
+                </div>
+
+            </div>
+
+             <!-- RUSH FEE NOTE -->
+             <div class="mt-12 text-center">
+                <div class="inline-block bg-red-100 border-2 border-red-300 p-4 rounded-xl shadow-lg transform rotate-1 mb-12">
+                    <h4 class="text-xl font-bold text-red-800 font-bubble"><i class="fa-solid fa-triangle-exclamation"></i> STRICTLY NO RUSH ORDERS</h4>
+                    <p class="text-red-700 font-hand text-lg">Quality takes time! Rush orders will incur a <span class="font-bold underline">+50% Rush Fee</span>.</p>
+                </div>
+            </div>
+
+            <!-- EMBEDDED GUIDELINES (Formerly Modal) -->
+            <div class="bg-white p-8 rounded-xl shadow-2xl relative border-l-8 border-red-200 max-w-4xl mx-auto">
+                <div class="washi-tape" style="background-color: #ffb7b2; top: -15px; width: 200px;">House Rules</div>
+                <h3 class="text-3xl text-center font-bold font-bubble text-edu-coffee mb-8"><i class="fa-solid fa-book text-red-400"></i> Commission Handbook</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                     <!-- Rule 1 -->
+                    <div class="flex gap-4 p-4 bg-green-50 rounded-lg border border-green-100">
+                        <div class="text-3xl text-green-500 min-w-[30px]"><i class="fa-solid fa-money-bill-wave"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-edu-coffee font-hand">Payment Policy</h4>
+                            <p class="text-gray-600 text-sm font-hand text-lg">Strictly <span class="font-bold">50% Downpayment</span> required. Balance upon completion. via GCash/Maya.</p>
+                        </div>
+                    </div>
+                     <!-- Rule 2 -->
+                     <div class="flex gap-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                        <div class="text-3xl text-blue-500 min-w-[30px]"><i class="fa-solid fa-rotate"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-edu-coffee font-hand">Revisions</h4>
+                            <p class="text-gray-600 text-sm font-hand text-lg">Max of <span class="font-bold">2 Minor Revisions</span> allowed. Major concept changes incur extra fees.</p>
+                        </div>
+                    </div>
+                     <!-- Rule 3 -->
+                     <div class="flex gap-4 p-4 bg-purple-50 rounded-lg border border-purple-100">
+                        <div class="text-3xl text-purple-500 min-w-[30px]"><i class="fa-solid fa-user-shield"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-edu-coffee font-hand">Privacy & Integrity</h4>
+                            <p class="text-gray-600 text-sm font-hand text-lg">Your identity is safe. Outputs are for reference only. I am not liable for school policies.</p>
+                        </div>
+                    </div>
+                    <!-- Rule 4 -->
+                    <div class="flex gap-4 p-4 bg-red-50 rounded-lg border border-red-100">
+                        <div class="text-3xl text-red-500 min-w-[30px]"><i class="fa-solid fa-ban"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-edu-coffee font-hand">No Refunds</h4>
+                            <p class="text-gray-600 text-sm font-hand text-lg">Downpayments are <span class="font-bold text-red-500">non-refundable</span> once work has started.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-6 text-gray-400 italic font-hand text-sm">"By ordering, you agree to these terms."</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-edu-coffee text-edu-paper py-12 text-center mt-0 border-t border-gray-700">
+        <h2 class="text-3xl mb-4">Let's work together!</h2>
+        <a href="https://www.facebook.com/edukasyon.commissions" class="inline-block bg-white text-edu-coffee text-xl px-8 py-3 rounded-full font-bold hover:scale-105 transition btn-font shadow-lg">Message on Facebook</a>
+        <p class="mt-8 opacity-50 text-sm font-sans">© 2025 EduKasyon Commissions.</p>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="code-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="absolute inset-0" onclick="closeModals()"></div>
+        <div class="bg-white w-full max-w-2xl rounded-xl shadow-2xl relative z-10 paper-card overflow-hidden">
+            <div class="bg-edu-coffee p-4 flex justify-between items-center text-white">
+                <h3 id="modal-title" class="text-xl font-bold font-bubble">Code</h3>
+                <button onclick="closeModals()" class="hover:text-red-300 text-2xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="bg-[#1e1e1e] p-6 overflow-x-auto max-h-[60vh]"><pre><code id="modal-code" class="text-green-400 font-mono text-sm leading-relaxed"></code></pre></div>
+        </div>
+    </div>
+
+    <div id="image-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4" onclick="closeModals()">
+        <button class="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 z-50"><i class="fa-solid fa-xmark"></i></button>
+        <div class="relative max-w-5xl max-h-screen text-center">
+            <img id="modal-img" src="" class="max-h-[85vh] w-auto rounded-lg shadow-2xl border-4 border-white">
+            <p id="modal-caption" class="text-white text-xl mt-4 font-hand font-bold tracking-wide"></p>
+        </div>
+    </div>
+
+    <div id="sia-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4" onclick="closeModals()">
+        <div class="relative bg-white w-full max-w-4xl h-[90vh] rounded-xl shadow-2xl overflow-y-auto paper-card" onclick="event.stopPropagation()">
+            <div class="sticky top-0 bg-[#FFF0E5] z-10 p-4 border-b border-orange-200 flex justify-between items-center">
+                <div class="washi-tape" style="background-color: #A0C4FF; top: 10px; width: 150px;">Case Study</div>
+                <h3 class="text-2xl font-bold font-bubble text-edu-coffee mt-4">Library Management System</h3>
+                <button onclick="closeModals()" class="text-2xl text-edu-coffee hover:text-red-500"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h4 class="text-xl font-bold text-orange-500 mb-2">Overview</h4>
+                        <p class="text-gray-600 mb-4">A complete RFID-based LMS for MPSU using Agile Methodology.</p>
+                        <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-gray-200 rounded-full text-sm font-bold">HTML/CSS</span><span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-bold">PHP/MySQL</span></div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg p-2 border-2 border-dashed border-gray-300">
+                        <img src="images/sia_dashboard.png" class="w-full h-auto rounded shadow-sm">
+                        <p class="text-center text-xs text-gray-500 mt-2">Figure 20: Analytics Dashboard</p>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold text-edu-coffee mb-4 border-b-2 border-orange-100 inline-block">System Documentation</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white p-2 shadow rounded border"><img src="images/ERD.png" class="w-full h-32 object-cover"><p class="text-center font-bold text-sm mt-2">ERD</p></div>
+                    <div class="bg-white p-2 shadow rounded border"><img src="images/flowchart.png" class="w-full h-32 object-cover"><p class="text-center font-bold text-sm mt-2">Flowchart</p></div>
+                    <div class="bg-white p-2 shadow rounded border"><img src="images/ui.png" class="w-full h-32 object-cover"><p class="text-center font-bold text-sm mt-2">Login UI</p></div>
+                    <div class="bg-white p-2 shadow rounded border"><img src="images/gantt.png" class="w-full h-32 object-cover"><p class="text-center font-bold text-sm mt-2">Gantt</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. RESEARCH PAPER MODAL -->
+    <div id="research-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4" onclick="closeModals()">
+        <div class="relative bg-edu-paper w-full max-w-5xl h-[85vh] rounded-xl shadow-2xl overflow-y-auto paper-card border-4 border-white" onclick="event.stopPropagation()">
+            <div class="sticky top-0 bg-[#FFF0E5] z-10 p-4 border-b border-orange-200 flex justify-between items-center shadow-sm">
+                <div class="washi-tape" style="background-color: #C8E6C9; top: 10px; width: 180px; color: #2E7D32;">Research Manuscript</div>
+                <h3 class="text-xl md:text-2xl font-bold font-bubble text-edu-coffee mt-4">Multimedia Compression</h3>
+                <button onclick="closeModals()" class="text-2xl text-edu-coffee hover:text-red-500"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-8 bg-edu-bg relative min-h-full">
+                <div class="absolute inset-0 opacity-5" style="background-image: url('https://www.transparenttextures.com/patterns/graphy.png');"></div>
+                <div class="relative z-10 text-center mb-8">
+                    <p class="text-lg text-gray-700 font-bold">"Analysis of JPEG, PNG, and WebP Algorithms"</p>
+                    <p class="text-sm text-gray-500">IEEE Format • Technical Writing Sample</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                    <div class="group relative transform -rotate-3 hover:rotate-0 hover:scale-105 transition duration-500 z-0 hover:z-20">
+                        <div class="bg-white p-2 shadow-xl border border-gray-200">
+                            <img src="images/research_title.png" alt="Title Page" class="w-full h-auto object-cover border border-gray-100">
+                            <p class="text-center text-xs text-gray-400 mt-2 font-mono">Title & Authors</p>
+                        </div>
+                        <div class="absolute -top-2 left-1/2 -translate-x-1/2 text-gray-400 text-3xl"><i class="fa-solid fa-paperclip"></i></div>
+                    </div>
+                    <div class="group relative transform scale-110 z-10 hover:scale-125 transition duration-500">
+                        <div class="bg-white p-4 shadow-2xl border border-gray-200">
+                            <img src="images/research_intro.png" alt="Introduction" class="w-full h-auto object-cover border border-gray-100">
+                            <p class="text-center text-xs text-gray-400 mt-2 font-mono">Introduction</p>
+                        </div>
+                    </div>
+                    <div class="group relative transform rotate-3 hover:rotate-0 hover:scale-105 transition duration-500 z-0 hover:z-20">
+                        <div class="bg-white p-2 shadow-xl border border-gray-200">
+                            <img src="images/research_toc.png" alt="Table of Contents" class="w-full h-auto object-cover border border-gray-100">
+                            <p class="text-center text-xs text-gray-400 mt-2 font-mono">Table of Contents</p>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 text-yellow-400 text-4xl opacity-80"><i class="fa-solid fa-star"></i></div>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <div class="inline-block bg-white p-4 rounded-lg shadow border border-orange-100">
+                        <p class="font-hand text-xl text-edu-coffee">Need help writing your Thesis or Technical Documentation?</p>
+                        <a href="#contact" onclick="closeModals()" class="block mt-2 bg-green-600 text-white px-6 py-2 rounded-full font-bold hover:bg-green-700 transition">Hire Me for Research</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const javaCodeSample = `public class Grade {\n  public static void main(String[] args) {\n    System.out.println("Passed ✅");\n  }\n}`;
+        const htmlCodeSample = `<nav><ul><li>Home</li></ul></nav>`;
+        const pythonCodeSample = `def sort():\n  print("Sorting...")`;
+
+        function openCodeModal(title, code) {
+            document.getElementById('modal-title').innerHTML = `<i class="fa-solid fa-terminal mr-2"></i> ${title}`;
+            document.getElementById('modal-code').textContent = code;
+            document.getElementById('code-modal').classList.add('active');
+        }
+        function openImageModal(imgSrc, caption) {
+            document.getElementById('modal-img').src = imgSrc;
+            document.getElementById('modal-caption').innerText = caption;
+            document.getElementById('image-modal').classList.add('active');
+        }
+        function closeModals() {
+            document.getElementById('code-modal').classList.remove('active');
+            document.getElementById('image-modal').classList.remove('active');
+            document.getElementById('sia-modal').classList.remove('active');
+            document.getElementById('research-modal').classList.remove('active');
+        }
+        document.addEventListener('keydown', (e) => { if(e.key === "Escape") closeModals(); });
+    </script>
+</body>
+</html>
